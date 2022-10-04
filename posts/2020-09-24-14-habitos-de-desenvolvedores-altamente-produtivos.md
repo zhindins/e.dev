@@ -1,212 +1,222 @@
 ---
-title: '14 Hábitos de Desenvolvedores
-Altamente Produtivos - Resenha do Livro'
-date: 2020-09-24 00:00:01
-description:
-  'Esse artigo é uma resenha desse ótimo livro e de alguns hábitos que são abordados nele 📚'
-image: /assets/2020-09-24-cover.jpg
-tags: ['carreira', 'livros', 'misc']
+title.pt: "CSS Modular com Mobile First"
+title.en: "CSS Modular with Mobile First"
+date: 2014-03-10 00:00:01
+description.pt: "📚📚Mobile First vai muito além de código, é um pensamento que precisa existir desde o inicio do projeto. Mas nesse artigo vou abordar apenas codificação para tentar deixar o workflow mais agradável"
+description.en: "📚📚Mobile First goes far beyond code, it's a thought that needs to exist from the beginning of the project. But in this article I will only cover coding to try to make the workflow more pleasant"
+tags: ["css", "javascript", "php"]
 ---
 
-Esse texto é uma versão em texto do vídeo: "14 Hábitos de Desenvolvedores
-Altamente Produtivos - Resenha do Livro"
-[que publiquei no meu canal no Youtube](https://youtube.com/FelipeFialhoDev).
+A importância de um CSS modularizado e o Atomic Design foi muito difundido nos últimos tempos, eu mesmo já escrevi um [artigo sobre o assunto](/blog/um-conto-sobre-componentizacao-e-quebra-de-paradigmas). Mas algo ainda me incomodava ao aplicar First Mobile em conjunto com CSS modular... os Media Queries.
 
-Vale a pena assistir! 😊
+## O uso tradicional
 
-<iframe width="650" height="400" src="https://www.youtube.com/embed/SootACbN5YY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="650" height="400" src="https://www.youtube.com/embed/L78ENSEHXLE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-## Sobre o livro
+Imagino que a maneira na qual os Media Queries são mais utilizados é adicionando as condicionais no fim do CSS, algo como:
 
-O livro
-[14 Hábitos de Desenvolvedores Altamente Produtivos](https://amzn.to/339ejc9),
-foi escrito pelo brasileiro [Zeno Rocha](https://twitter.com/zenorocha) e
-rapidamente se tornou um best seller, tanto na versão em inglês como na versão
-em português.
+```css
+@media (max-width: 767px) {
+  ...
+}
+```
 
-Ele foca muito mais em hábitos não técnicos do que fatores técnicos e consegue
-ser interessante tanto para pessoas em inicio de carreira como pessoas que já
-tem certa experiência na área.
+<iframe width="650" height="400" src="https://www.youtube.com/embed/9XaS93WMRQQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-No final de cada hábito, tem uma seção chamada “Perguntas e Respostas”, onde
-desenvolvedores sênior e pessoas que atuam como líderes de tecnologia em algumas
-das maiores empresas do mundo são entrevistadas e elas passam a visão pessoal
-delas sobre como lidam com cada hábito.
 
-**Disclaimer**: O objetivo desse texto não é falar sobre cada um dos hábitos que
-estão presentes no livro, mas sim de algumas partes que me chamaram a atenção.
+Um dos principais motivos para eu utilizar dessa forma, era nosso bom (só que não) e velho amigo IE8\. Ainda forneço suporte mínimo para esse navegador e como ele não aceita Media Queries, eu desenvolvia a versão mais "básica" para desktop, e ia "limpando" conforme a resolução.
 
-## Fun Fact
+Cheguei a pesquisar plugins que ajudariam a contornar esse problema, mas na época não encontrei nada que funcionasse ou me agradasse plenamente.
 
-Uma coisa curiosa que aconteceu é que estava na casa dos meus pais e meu pai
-estava me observando [lendo no Kindle](https://amzn.to/3ifqxXc), então ele ficou
-super curioso sobre o aparelho.
+## Novos tempos
 
-Quando terminei a leitura, deixei em cima da mesa e ele começou a fuçar e depois
-de algum tempo finalmente conseguiu ligar o Kindle 😂
+Mês passado iniciei um novo projeto, e adicionar Media Queries no final do CSS já não me deixava confortável mais.
 
-O livro que estava aberto era justamente
-[14 Hábitos de Desenvolvedores Altamente Produtivos](https://amzn.to/339ejc9),
-então ele leu os dois últimos capítulos, gostou bastante e inclusive acabou
-comentando com minha mãe algumas das coisas que estavam escritas.
+A explicação é simples. Imaginem um componente, é de se esperar que toda a funcionalidade atrelada a ele esteja dentro do seu próprio 'include' (para quem usa pré-processadores). Mas a partir do momento que era necessário "ajustar" o funcionamento dele para outras resoluções no 'include' do media querie, as coisas ficavam esquisitas e eu me sentia desconfortável.
 
-Ou seja, ao contrário de muitos livros de tecnologia, esse livro tem uma leitura
-muito fluida e pode agradar até mesmo pessoas que não atuam com desenvolvimento.
+Lembrei então que o [Bootstrap 3](http://getbootstrap.com) já estava trabalhando de uma maneira muito próxima da que eu considerava ideal, e fornecia com a ajuda de plugins, suporte para o IE8\. Então conheci o [Respond.js](https://github.com/scottjehl/Respond) e todos meus problemas com o IE8 se resolveram.
 
-## Sobre hábitos e consistência
+## Modern Workflow...
 
-> Consistência é importante na vida pessoal e esse mesmo conceito também se
-> aplica à nossa carreira profissional. Os hábitos que a gente decide cultivar
-> (ou não cultivar) determinarão parte das nossas futuras oportunidades de vida.
-> Eles parecem fazer pouca diferença em um determinado dia e, no entanto, o
-> impacto que eles proporcionam ao longo dos meses e dos anos podem ser enormes.
-> É apenas quando se olha para trás dois, cinco ou talvez dez anos depois que o
-> valor dos bons hábitos e o custo dos maus se tornam surpreendentemente
-> aparentes.
+Não tem segredo. Simplesmente adiciono os Media Queries em sequencia da classe que desejo alterar. Caso use algum pré-processador, isso será ainda mais simples, porque você pode deixar tudo organizado. Usando o LESS como exemplo:
 
-Esse é um livro sobre hábitos e hábitos só começam a fazer parte da rotina se a
-gente praticar todos os dias, então no fim de cada capitulo também tem uma seção
-marcada como TO-DO, com algumas tarefas para ajudar a consolidar esses hábitos
-no dia a dia.
+```css
+.navbar {
+  margin-top: 20px;
+  @media (min-width: @screen-sm-min) {
+    float: left;
+    width: 25%;
+  }
+  @media (min-width: @screen-lg-min) {
+    position: fixed;
+    top: 40px; left: 20px;
+  }
+}
+```
+<iframe width="650" height="400" src="https://www.youtube.com/embed/yo3B_xHVEqM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-## Dizer 'Não'
+![340x500](https://m.media-amazon.com/images/I/61ih6raIX9S._AC_SX569_.jpg)
+![340x500](https://images.unsplash.com/photo-1649525926154-992ad78a537b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80)
+![340x500](https://images.unsplash.com/photo-1649575207563-0314a0cd0398?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80)
+![340x500](https://images.unsplash.com/photo-1649578474199-59d8f6d4c03e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80)
+![340x500](https://images.unsplash.com/photo-1649579035859-cf6c798b0bbf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80)
+![340x500](https://images.unsplash.com/photo-1649510165975-dfb63de055a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80)
+Isso vai gerar:
 
-Uma das coisas abordadas no livro que ainda hoje eu tenho muita dificuldade é
-praticar a arte sutil de dizer **não**.
+```css
+.navbar {
+  margin-top: 20px;
+}
+@media (min-width: 768px) {
+  .navbar {
+    float: left;
+    width: 25%;
+  }
+}
+@media (min-width: 1200px) {
+  .navbar {
+    position: fixed;
+    top: 40px;
+    left: 20px;
+  }
+}
+```
 
-Dizer não à aquela nova lib que acabou de ser lançada e ainda não vale a pena
-usar, dizer não à aquele convite para palestrar em determinado evento ou dizer
-não pra assumir novos compromissos que de repente não fazem sentido no momento.
+```php
+protected function blockCodeContinue($Line, $Block)
+    {
+        if ($Line['indent'] >= 4)
+        {
+            if (isset($Block['interrupted']))
+            {
+                $Block['element']['element']['text'] .= str_repeat("\n", $Block['interrupted']);
 
-Precisamos aprender a dizer mais vezes **não** para poder dizer mais **sim**
-para coisas que realmente importam pra gente.
+                unset($Block['interrupted']);
+            }
 
-## Jogos Finitos e Infinitos
+            $Block['element']['element']['text'] .= "\n";
 
-Em 1986, o filósofo James Carse lançou seu livro
-[Jogos Finitos e Infinitos: Uma Visão da Vida como Jogo e Possibilidade](https://amzn.to/333qKWM),
-onde introduziu dois tipos de jogos: Finitos e Infinitos.
+            $text = substr($Line['body'], 4);
 
-Um jogo finito são jogos com jogadores conhecidos, regras fixas e objetivos
-estabelecidos.
+            $Block['element']['element']['text'] .= $text;
 
-Por exemplo, o **futebol** é um bom exemplo de jogo finito.
+            return $Block;
+        }
+    }
+```
 
-Já um jogo infinito, é definido como aqueles em que existem jogadores conhecidos
-e desconhecidos, as regras podem mudar a qualquer hora e o objetivo não é
-vencer, mas sim continuar jogando.
+```javascript 
+var data;
+var qnt;
+var currentPage = 1;
+var pageItems = 8;
+function init(file) {
+	var request = new XMLHttpRequest();
+	request.open('GET', file, true);
+	request.send(null);
+	request.addEventListener("readystatechange", function() {
+		if (this.readyState === 4) {
+			data = JSON.parse(this.responseText);
+			qnt = Object.keys(data['main']).length;
+														
+			var getPage = parseInt((window.location.href.match(/([^\/]*)\/*$/)[1]));
+			if ((getPage < 1) || (getPage > Math.ceil(qnt/pageItems)) || !getPage) {
+				setPage(currentPage);
+				history.pushState({}, "", window.location.protocol + "//" + window.location.hostname + "/blog/");
+			} else {
+				setPage(getPage);
+				currentPage = getPage;
+			}
+		}
+	});
+};
+init('/main.json?z=' + Math.random());
+```
 
-Sendo assim a **programação** seria um jogo infinito.
+Dessa forma conseguimos trabalhar com Mobile First de um jeito realmente interessante, e tudo flui muito naturalmente. Setamos primeiro as propriedades que são comuns para todas as resoluções e _progressivamente_ vamos adicionando as funcionalidades para resoluções maiores.
 
-Isso porque sempre existem novas pessoas entrando no mercado de trabalho, novos
-conceitos surgem todos os dias, novos padrões são inventados e novos problemas
-(e bugs 😅) sem que a gente espere por eles.
+E além de tudo, os componentes vão ter todas as propriedades deles dentro do próprio 'include'. Caso queira adicionar ou remover determinado componente, não precisa se preocupar em alterar os Media Queries separados para ajustar o projeto.
 
-Pessoas que jogam o jogo infinito estão menos preocupadas com a intensidade e
-mais focadas na consistência. Isso porque é impossível manter intensidade por
-longos períodos jogando jogos infinitos, claro que eventualmente vamos precisar
-de alguma intensidade mas é improvável que a gente consiga manter ela por muito
-tempo.
+## Plus: Os imprescindíveis automatizadores
 
-Em jogos infinitos não sabemos exatamente quando veremos os resultados, já que
-cada pessoa é diferente e existem milhares de variáveis, então os resultados vão
-aparecer em momentos diferentes.
+E claro... nossos melhores amigos [Grunt](http://gruntjs.com) ou [Gulp](http://gulpjs.com) vão melhorar ainda mais esse processo.
 
-Sendo assim, precisamos de **consistência** e não intensidade.
+Existe um pequeno problema quando usamos os Media Queries dessa maneira... código desnecessário. Vamos ter milhares de Media Queries repetidos espalhados pelo projeto.
 
-## Escrever códigos pro nosso eu de amanhã
+A boa notícia é que tanto o Grunt quanto o Gulp tem um plugin que resolve esse problema (indicação do [Nícolas Rossett](https://www.facebook.com/nicolas.rossett)): [grunt-combine-media-queries](https://github.com/buildingblocks/grunt-combine-media-queries) ou [gulp-combine-media-queries](https://github.com/konitter/gulp-combine-media-queries).
 
-Outro ponto legal que o livro aborda é da gente sempre se perguntar se nosso
-futuro eu entenderá o código que estamos desenvolvendo agora.
-
-> Isso porque muitas vezes a gente escreve código para o nosso eu atual, mas
-> precisamos escrever códigos pensando no nosso eu do futuro. Nosso eu atual tem
-> todo o contexto necessário para entender o código escrito hoje, enquanto nosso
-> eu futuro pode ser uma pessoa completamente diferente do nosso eu atual, que
-> vai estar envolvido com outras coisas e provavelmente não se lembrará do que a
-> função X ou o método Y significa.
-
-Automaticamente isso nos ajuda a escrever códigos mais legíveis, tanto pra gente
-quanto pra outras pessoas.
-
-## Se interessar no negócio
-
-Existem outros dois hábitos super importantes presentes no livro que também
-acabei citando no vídeo sobre
-[10 coisas que faria se estivesse iniciando minha carreira como desenvolvedor](https://youtu.be/7yar-WWOifI).
-
-Um desses hábitos é sobre a importância de ir sempre além de código e buscar
-conhecer melhor a atuação de outras áreas que impactam no nosso trabalho e
-também sobre a área de negócios.
-
-Entender mais sobre tudo que impacta no nosso dia a dia é importante inclusive
-para que agente consiga ser mais assertivos sobre o orçamento dos custos e tempo
-de desenvolvimento de determinadas tasks. Isso que é algo que pessoas de todos
-os níveis de senioridade tem dificuldade.
-
-## Projetos paralelos
-
-O outro hábito é uma coisa que costumo falar bastante, que é criar projetos
-paralelos, como por exemplo projetos open source, pra aprender novas tecnologias
-e melhorar algumas habilidades.
-
-As vezes não é fácil manter motivação para continuar tocando esses projetos,
-então o livro compila algumas perguntas que podem ser feitas antes da gente se
-envolver ou iniciar projetos paralelos.
-
-A importância de criar projetos paralelos é enorme para alavancar uma carreira e
-já falei sobre isso em outros artigos como no
-[Como contribuir com Open Source](/como-contribuir-com-open-source).
-
-## Especialista ou generalista?
-
-Também tem um capitulo inteiro falando sobre uma pergunta que sempre me fazem:
-
-> Devo ser mais especialista ou mais generalista?
-
-O ponto de vista do livro vai de acordo com o que eu penso, ou seja... ser um
-pouquinho mais **generalista**.
-
-Sendo que em alguns momentos da carreira vamos nos aprofundar e ser mais
-especialistas em determinados assuntos e em outros momentos vamos ser mais
-generalistas, especialmente quando estamos ocupando cargos de liderança.
-
-Cheguei a comentar disso no artigo
-[O que Front-end Developers precisam saber?](/o-que-front-end-developers-precisam-saber)
-
-## Controlando as variáveis
-
-O livro ainda entra num tema filosófico que me agrada bastante, que é
-**Estoicismo**. Inclusive tenho uma thread no Twitter falando sobre esse
-assunto:
-
-https://twitter.com/felipefialho_/status/1218152249173708801
-
-Na vida nós temos coisas que podemos controlar e outras que não podemos, uma das
-ideias centrais do Estoicismo é sempre focar nossas ações nas coisas que podemos
-controlar e aprender a reagir diante das coisas que não podemos.
-
-Conversando com o Zeno logo no início da pandemia, falamos sobre o cenário que
-estávamos (e ainda estamos) vivendo e como não realmente não temos controle
-sobre nada que é externo a nossa vida.
-
-Afinal de contas só controlamos nossas ações e reações. Nisso ele me disse que
-aproveitaria esse momento pra escrever um livro e assim foi feito.
-
-Essa é uma variável que podemos controlar, ou seja, **como usamos nosso tempo**.
-
-Assumir bons hábitos que podem melhorar a nossa vida pessoal e profissional é
-uma das variáveis que podemos e devemos controlar, e no fim essa é uma das
-maiores mensagens que o livro passa.
+Esse ótimo plugin vai pegar todos os Media Queries espalhados pelo CSS e juntar tudo no final conforme a resolução. Exatamente da maneira que você sempre fez.
 
 ## Conclusão
 
-Se você gostou, vou deixar abaixo o link pra comprar o livro e também para
-comprar o Kindle que é uma aquisição que recomendo demais pra ajudar a melhorar
-os hábitos de leitura:
+Quero deixar claro que essa é uma preferência pessoal de uso dos Media Queries, caso não se sinta confortável para trabalhar dessa forma, nada impede que continue usando da maneira tradicional, o importante é estar sempre seguro dentro do seu próprio workflow.
 
-- [🛒 Comprar o Kindle](https://amzn.to/3ifqxXc)
-- [🛒 "14 Hábitos de Desenvolvedores Altamente Produtivos"](https://amzn.to/339ejc9)
-- [🛒 "Finite and Infinite Games"](https://amzn.to/333qKWM)
+Abraços e até a próxima ;)
 
-Valeu! 😁
+%%english-lang-block%%
+
+The importance of modularized CSS and Atomic Design has been widespread in recent times, I myself have written an [article on the subject](/blog/a-tale-about-componentization-and-paradigm-breaking). But something still bothered me when applying First Mobile in conjunction with modular CSS... the Media Queries.
+
+## The traditional usage
+
+I imagine the way in which Media Queries are most used is by adding conditionals at the end of the CSS, something like:
+
+%%code-block%%
+
+One of the main reasons I used it this way was our good (but not) old friend IE8\. I still provide minimal support for this browser and as it doesn't support Media Queries, I developed the most "basic" desktop version, and "cleaned" it according to the resolution.
+
+I even researched plugins that would help get around this problem, but at the time I didn't find anything that worked or fully pleased me.
+
+## New Times
+
+
+<iframe width="650" height="400" src="https://www.youtube.com/embed/L78ENSEHXLE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Last month I started a new project, and adding Media Queries at the end of the CSS didn't make me comfortable anymore.
+
+The explanation is simple. Imagine a component, it is to be expected that all the functionality linked to it is inside its own 'include' (for those who use preprocessors). But from the moment it was necessary to "adjust" its functioning to other resolutions in the 'include' of the media querie, things got weird and I felt uncomfortable.
+
+I then remembered that [Bootstrap 3](http://getbootstrap.com) was already working very close to what I considered ideal, and provided with the help of plugins, support for IE8\. Then I found [Respond.js](https://github.com/scottjehl/Respond) and all my problems with IE8 were solved.
+
+## Modern Workflow...
+
+There's no secret. I simply add the Media Queries in sequence of the class I want to change. If you use a preprocessor, this will be even simpler, because you can keep everything organized. Using LESS as an example:
+
+%%code-block%%
+
+<iframe width="650" height="400" src="https://www.youtube.com/embed/9XaS93WMRQQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="650" height="400" src="https://www.youtube.com/embed/yo3B_xHVEqM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+![340x500](https://m.media-amazon.com/images/I/61ih6raIX9S._AC_SX569_.jpg)
+![340x500](https://images.unsplash.com/photo-1649525926154-992ad78a537b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80)
+![340x500](https://images.unsplash.com/photo-1649575207563-0314a0cd0398?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80)
+![340x500](https://images.unsplash.com/photo-1649578474199-59d8f6d4c03e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80)
+![340x500](https://images.unsplash.com/photo-1649579035859-cf6c798b0bbf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80)
+![340x500](https://images.unsplash.com/photo-1649510165975-dfb63de055a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80)
+This will generate:
+
+%%code-block%%
+
+%%code-block%%
+
+%%code-block%%
+
+That way we were able to work with Mobile First in a really interesting way, and everything flows very naturally. We first set the properties that are common for all resolutions and _progressively_ we add the features for higher resolutions.
+
+And on top of that, the components will have all their properties inside the 'include' itself. If you want to add or remove a certain component, you don't have to worry about changing separate Media Queries to fit the project.
+
+## Plus: The Essential Automators
+
+And of course... our best friends [Grunt](http://gruntjs.com) or [Gulp](http://gulpjs.com) will improve this process even further.
+
+There is a small problem when using Media Queries in this way... unnecessary code. We will have thousands of repeated Media Queries scattered throughout the project.
+
+The good news is that both Grunt and Gulp have a plugin that solves this problem (indicated by [Nícolas Rossett](https://www.facebook.com/nicolas.rossett)): [grunt-combine-media-queries ](https://github.com/buildingblocks/grunt-combine-media-queries) or [gulp-combine-media-queries](https://github.com/konitter/gulp-combine-media-queries).
+
+This great plugin will take all the Media Queries scattered around the CSS and put them together at the end according to the resolution. Exactly the way you always did.
+
+## Conclusion
+
+I want to make it clear that this is a personal preference for using Media Queries, if you don't feel comfortable working this way, nothing prevents you from continuing to use it in the traditional way, the important thing is to always be safe within your own workflow.
+
+Hugs and see you soon ;)
