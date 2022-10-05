@@ -1,13 +1,13 @@
 ---
-title.pt: "CSS Modular com Mobile First"
-title.en: "CSS Modular with Mobile First"
+title.pt: "CSS Modular com Mobile First 01"
+title.en: "CSS Modular with Mobile First 01"
 date: 2014-03-10 00:00:01
 description.pt: "📚📚Mobile First vai muito além de código, é um pensamento que precisa existir desde o inicio do projeto. Mas nesse artigo vou abordar apenas codificação para tentar deixar o workflow mais agradável"
 description.en: "📚📚Mobile First goes far beyond code, it's a thought that needs to exist from the beginning of the project. But in this article I will only cover coding to try to make the workflow more pleasant"
 tags: ["css", "javascript", "php"]
 ---
 
-A importância de um CSS modularizado e o Atomic Design foi muito difundido nos últimos tempos, eu mesmo já escrevi um [artigo sobre o assunto](/blog/um-conto-sobre-componentizacao-e-quebra-de-paradigmas). Mas algo ainda me incomodava ao aplicar First Mobile em conjunto com CSS modular... os Media Queries.
+01A importância de um CSS modularizado e o Atomic Design foi muito difundido nos últimos tempos, eu mesmo já escrevi um [artigo sobre o assunto](/blog/um-conto-sobre-componentizacao-e-quebra-de-paradigmas). Mas algo ainda me incomodava ao aplicar First Mobile em conjunto com CSS modular... os Media Queries.
 
 ## O uso tradicional
 
